@@ -1,0 +1,73 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:SzelessegiBejaras"
+	mc:Ignorable="d"
+	x:Class="SzelessegiBejaras.Settings"
+	x:Name="UserControl" d:DesignHeight="480" Width="268" KeyDown="UserControl_KeyDown">
+
+    <Grid x:Name="LayoutRoot">
+        <TabControl x:Name="TabControl">
+            <TabItem x:Name="GraphProperties" Header="Gráf Tulajdonságai">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Background="White">
+                    <CheckBox x:Name="IsDirectedCheckBox" Content="Irányított Gráf" HorizontalAlignment="Left" Margin="10,24.04,0,0" VerticalAlignment="Top" Checked="IsDirectedCheckBox_Checked" Unchecked="IsDirectedCheckBox_Checked" IsChecked="False"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,383.08,0,0" TextWrapping="Wrap" Text="Csúcsok száma" VerticalAlignment="Top"/>
+                    <TextBlock x:FieldModifier="public" x:Name="VertexCountTextBlock" HorizontalAlignment="Left" Margin="165,383.08,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="0"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,362.12,0,0" TextWrapping="Wrap" Text="Élek Száma" VerticalAlignment="Top"/>
+                    <TextBlock x:FieldModifier="public" x:Name="EdgeCountTextBlock" HorizontalAlignment="Left" Margin="165,362.12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="0"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,106,0,0" TextWrapping="Wrap" Text="Aktuálisan kiválasztott csúcs" VerticalAlignment="Top"/>
+                    <TextBlock x:FieldModifier="public" x:Name="CurrentlySelectedVertexTextBlock" HorizontalAlignment="Left" Margin="10,127,0,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" Text="Nincs kiválaszott csúcs" Width="227"/>
+                    <Button x:Name="DeleteGraphButton" Content="Gráf Törlése" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Width="141" Click="DeleteGraphButton_Clicked"/>
+                    <Button Content="Kiválaszott Csúcs Törlése" HorizontalAlignment="Left" Margin="10,201,0,0" VerticalAlignment="Top" Width="141" Click="DeleteVertexButton_Clicked"/>
+                    <Button Content="Kiválaszott Él Törlése" HorizontalAlignment="Left" Margin="10,226,0,0" VerticalAlignment="Top" Width="141" Click="DeleteEdgeButton_Clicked"/>
+                    <Button Content="Gráf újraindítása" HorizontalAlignment="Left" Margin="10,251,0,0" VerticalAlignment="Top" Width="141" Click="ResetAllVisitedState_Click"/>
+                    <CheckBox x:Name="VisibleLabelsCheckBox" Content="Látható élcímkék" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Checked="VisibleLabelsCheckBox_Checked" Unchecked="VisibleLabelsCheckBox_Unchecked" IsChecked="False"/>
+                    <CheckBox x:Name="VisibleDistanceLabelsCheckBox" Content="Látható távolság (Dijkstra algoritmushoz)" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Checked="VisibleDistanceLabelsCheckBox_Checked" Unchecked="VisibleDistanceLabelsCheckBox_Unchecked" IsChecked="False"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="AlgorithmProperties" Header="Algoritmus" >
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Background="White">
+                    <ComboBox x:Name="AlgorithmChooseComboBox" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" Width="206" SelectionChanged="AlgorithmChooseComboBox_SelectionChanged">
+                        <ComboBoxItem Content="Szélességi Bejárás" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="Dijkstra Algoritmus" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="Prim Algoritmus" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Válasszon Algoritmust" VerticalAlignment="Top"/>
+                    <Button Content="Futtatás " HorizontalAlignment="Left" Margin="10,422,0,0" VerticalAlignment="Top" Width="75" Click="RunAlgorithm"/>
+                    <ListBox x:Name="AlgorithmStateListBox" HorizontalAlignment="Left" Height="317" Margin="10,85,0,0" VerticalAlignment="Top" Width="242"/>
+                    <Button Content="Következő lépés" HorizontalAlignment="Left" Margin="139,422,0,0" VerticalAlignment="Top" Width="101" Click="NextStep_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="AnimationProperties" Header="Animáció" Margin="-2,-2,-2,0">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Background="White" Margin="0,1,0,-1">
+                    <Slider x:Name="AnimationPauseTime" x:FieldModifier="public" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Width="121" Maximum="5000" Style="{DynamicResource SimpleSlider}" ValueChanged="AnimationPauseTime_ValueChanged" SmallChange="1" IsSnapToTickEnabled="True" Value="150"/>
+                    <Label x:Name="AnimationLengthLabel_Copy" Content="Lépések közti szünet (ms)" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="AnimationPauseTimeLabel" Content="{Binding Value, ElementName=AnimationPauseTime, StringFormat=\{0:N1\}}" HorizontalAlignment="Left" Margin="136,37,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="Gombnyomásra Haldás" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

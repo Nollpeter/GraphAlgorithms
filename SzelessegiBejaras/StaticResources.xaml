@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:SzelessegiBejaras">
+   <!-- <DynamicResourceExtension ResourceKey="1.5" x:Name="strokethicknes">1.5</DynamicResourceExtension>-->
+    <local:StaticResource x:Key="Stroke"></local:StaticResource>
+</ResourceDictionary>

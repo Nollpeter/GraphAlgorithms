@@ -1,0 +1,19 @@
+﻿<Button
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="SzelessegiBejaras.Vertex"
+	x:Name="VertexButton"
+	d:DesignWidth="30" d:DesignHeight="60" Padding="0" BorderBrush="Black" MouseRightButtonDown="VertexButton_MouseRightButtonDown"   >
+
+    <Grid x:Name="LayoutRoot">
+
+        <TextBlock x:Name="Label" x:FieldModifier="public"  VerticalAlignment="Top" HorizontalAlignment="Center" Width="20">
+
+        </TextBlock>
+        <TextBlock x:Name="DistanceLabel" x:FieldModifier="public"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="-10,0,-10,-22" Width="20" Visibility="Hidden"/>
+    </Grid>
+
+</Button>
